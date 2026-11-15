@@ -1,0 +1,9 @@
+classpath:C:\Users\vĩ\.m2\repository\jakarta\servlet\jakarta.servlet-api\6.0.0\jakarta.servlet-api-6.0.0.jar	347613:1794733632616
+classpath:C:\Users\vĩ\.m2\repository\jakarta\servlet\jsp\jakarta.servlet.jsp-api\3.1.1\jakarta.servlet.jsp-api-3.1.1.jar	71370:1794733632683
+classpath:C:\Users\vĩ\.m2\repository\jakarta\servlet\jsp\jstl\jakarta.servlet.jsp.jstl-api\3.0.2\jakarta.servlet.jsp.jstl-api-3.0.2.jar	46093:1794208448409
+classpath:C:\Users\vĩ\.m2\repository\jakarta\el\jakarta.el-api\5.0.0\jakarta.el-api-5.0.0.jar	87908:1794208449335
+classpath:C:\Users\vĩ\.m2\repository\org\glassfish\web\jakarta.servlet.jsp.jstl\3.0.1\jakarta.servlet.jsp.jstl-3.0.1.jar	3711043:1794208449960
+classpath:C:\Users\vĩ\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\13.6.2.jre11\mssql-jdbc-13.6.2.jre11.jar	1585109:1794209832845
+classpath:C:\Users\vĩ\.m2\repository\org\hibernate\orm\hibernate-core\7.4.6.Final\hibernate-core-7.4.6.Final.jar	15281493:1794468176263
+classpath:C:\Users\vĩ\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.2.0\jakarta.persistence-api-3.2.0.jar	195939:1794467480120
+classpath:C:\Users\vĩ\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar	28607:1794467480602

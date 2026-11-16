@@ -18,5 +18,15 @@ public interface VideoDAO {
     void update(Video video);
     
     void delete(String videoId);
+    
+    List<Video> findByUser(int userId);
+
+    List<Video> findByUserWithPagination(int userId, int page, int pageSize);
+    
+    long countByUser(int userId);
+    
+    List<Video> findTop10Latest();
+    
+    void incrementViews(String videoId);
 
 }

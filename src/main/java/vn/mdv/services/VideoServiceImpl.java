@@ -44,4 +44,29 @@ public class VideoServiceImpl implements VideoService {
     public void delete(String videoId) {
         videoDAO.delete(videoId);
     }
+    
+    @Override
+    public List<Video> findByUser(int userId) {
+        return videoDAO.findByUser(userId);
+    }
+
+    @Override
+    public List<Video> findByUserWithPagination(int userId, int page, int pageSize) {
+        return videoDAO.findByUserWithPagination(userId, page, pageSize);
+    }
+
+    @Override
+    public long countByUser(int userId) {
+        return videoDAO.countByUser(userId);
+    }
+
+    @Override
+    public List<Video> findTop10Latest() {
+        return videoDAO.findTop10Latest();
+    }
+    
+    @Override
+    public void incrementViews(String videoId) {
+        videoDAO.incrementViews(videoId);
+    }
 }

@@ -138,4 +138,99 @@ public class VideoDAOImpl implements VideoDAO {
             em.close();
         }
     }
+    
+    @Override
+    public List<Video> findByUser(int userId) {
+
+        EntityManager em = DBconnection.getEntityManager();
+
+        try {
+            String jpql = "SELECT v FROM Video v WHERE v.user.id = :userId";
+
+            return em.createQuery(jpql, Video.class)
+                     .setParameter("userId", userId)
+                     .getResultList();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Video> findByUserWithPagination(int userId, int page, int pageSize) {
+
+        EntityManager em = DBconnection.getEntityManager();
+
+        try {
+            String jpql = "SELECT v FROM Video v WHERE v.user.id = :userId";
+
+            return em.createQuery(jpql, Video.class)
+                     .setParameter("userId", userId)
+                     .setFirstResult((page - 1) * pageSize)
+                     .setMaxResults(pageSize)
+                     .getResultList();
+
+        } finally {
+            em.close();
+        }
+    }
+    
+    @Override
+    public long countByUser(int userId) {
+
+        EntityManager em = DBconnection.getEntityManager();
+
+        try {
+            String jpql = "SELECT COUNT(v) FROM Video v WHERE v.user.id = :userId";
+
+            return em.createQuery(jpql, Long.class)
+                     .setParameter("userId", userId)
+                     .getSingleResult();
+
+        } finally {
+            em.close();
+        }
+    }
+    
+    @Override
+    public List<Video> findTop10Latest() {
+
+        EntityManager em = DBconnection.getEntityManager();
+
+        try {
+            String jpql = "SELECT v FROM Video v ORDER BY v.createdDate DESC";
+
+            return em.createQuery(jpql, Video.class)
+                     .setMaxResults(10)
+                     .getResultList();
+
+        } finally {
+            em.close();
+        }
+    }
+    
+    @Override
+    public void incrementViews(String videoId) {
+        EntityManager em = DBconnection.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            em.createQuery(
+                "UPDATE Video v SET v.views = v.views + 1 WHERE v.videoId = :videoId"
+            )
+            .setParameter("videoId", videoId)
+            .executeUpdate();
+
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
 }

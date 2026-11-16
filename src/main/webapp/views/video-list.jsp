@@ -7,34 +7,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý Video</title>
+    <title>Video của tôi</title>
 </head>
 <body>
 
     <%@ include file="topbar.jsp"%>
 
-    <h2>Danh sách Video</h2>
+    <h2>Video của tôi</h2>
 
-    <!-- Tìm kiếm video -->
-    <form action="${pageContext.request.contextPath}/video" method="get">
-        <input type="text" name="keyword"
-               placeholder="Nhập tiêu đề video..."
-               value="${keyword}">
+    <p>Tổng số video: ${videos.size()}</p>
 
-        <button type="submit">Tìm kiếm</button>
-        <a href="${pageContext.request.contextPath}/video">Làm mới</a>
-    </form>
-
-    <br>
-
-    <!-- Nút thêm video -->
-    <a href="${pageContext.request.contextPath}/video/add">
-        <button type="button">Thêm video</button>
-    </a>
+    <c:if test="${user.roleid == 1}">
+        <a href="${pageContext.request.contextPath}/video/add">
+            <button type="button">Thêm video</button>
+        </a>
+    </c:if>
 
     <br><br>
 
     <table border="1" cellpadding="10" cellspacing="0">
+
         <thead>
             <tr>
                 <th>Video ID</th>
@@ -49,12 +41,22 @@
         </thead>
 
         <tbody>
+
             <c:forEach items="${videos}" var="video">
+
                 <tr>
                     <td>${video.videoId}</td>
-                    <td>${video.title}</td>
+
+                    <td>
+                        <a href="${pageContext.request.contextPath}/video/detail?id=${video.videoId}">
+                            ${video.title}
+                        </a>
+                    </td>
+
                     <td>${video.description}</td>
+
                     <td>${video.poster}</td>
+
                     <td>${video.views}</td>
 
                     <td>
@@ -71,27 +73,73 @@
                     <td>${video.category.cateName}</td>
 
                     <td>
-                        <a href="${pageContext.request.contextPath}/video/edit?videoId=${video.videoId}">
-                            Sửa
-                        </a>
+                        <c:if test="${user.roleid == 1}">
 
-                        |
+                            <a href="${pageContext.request.contextPath}/video/edit?videoId=${video.videoId}">
+                                Sửa
+                            </a>
 
-                        <a href="${pageContext.request.contextPath}/video/delete?videoId=${video.videoId}"
-                           onclick="return confirm('Bạn có chắc chắn muốn xóa video này không?');">
-                            Xóa
-                        </a>
+                            |
+
+                            <a href="${pageContext.request.contextPath}/video/delete?videoId=${video.videoId}"
+                               onclick="return confirm('Bạn có chắc chắn muốn xóa video này không?');">
+                                Xóa
+                            </a>
+
+                        </c:if>
                     </td>
                 </tr>
+
             </c:forEach>
 
             <c:if test="${empty videos}">
                 <tr>
-                    <td colspan="8">Không có video nào!</td>
+                    <td colspan="8">Bạn chưa có video nào!</td>
                 </tr>
             </c:if>
+
         </tbody>
+
     </table>
+
+    <br>
+
+    <!-- Phân trang -->
+    <c:if test="${totalPages > 1}">
+
+        <c:if test="${currentPage > 1}">
+            <a href="${pageContext.request.contextPath}/video?page=${currentPage - 1}">
+                Trang trước
+            </a>
+        </c:if>
+
+        <c:forEach begin="1" end="${totalPages}" var="i">
+
+            <c:choose>
+                <c:when test="${i == currentPage}">
+                    <strong>${i}</strong>
+                </c:when>
+
+                <c:otherwise>
+                    <a href="${pageContext.request.contextPath}/video?page=${i}">
+                        ${i}
+                    </a>
+                </c:otherwise>
+            </c:choose>
+
+        </c:forEach>
+
+        <c:if test="${currentPage < totalPages}">
+            <a href="${pageContext.request.contextPath}/video?page=${currentPage + 1}">
+                Trang sau
+            </a>
+        </c:if>
+
+    </c:if>
+
+    <br><br>
+
+    <a href="${pageContext.request.contextPath}/home">Quay về trang chủ</a>
 
 </body>
 </html>

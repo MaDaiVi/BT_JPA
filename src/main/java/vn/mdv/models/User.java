@@ -8,6 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.OneToMany;
+
 @Entity(name = "User")
 @Table(name = "`User`", schema = "dbo")
 public class User {
@@ -39,6 +43,12 @@ public class User {
 
     @Column(name = "createddate")
     private Timestamp createdDate;
+    
+    @Column(name = "isActive", nullable = false)
+    private boolean isActive = true;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Video> videos = new ArrayList<>();
 
     // Constructor mặc định bắt buộc cho JPA
     public User() {
@@ -115,5 +125,21 @@ public class User {
 
     public void setCreatedDate(Timestamp createdDate) {
         this.createdDate = createdDate;
+    }
+    
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+    
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
     }
 }

@@ -74,6 +74,10 @@ button {
 			</label> <br> <br>
 
 			<button type="submit">Đăng nhập</button>
+			<div>
+				<a href="${pageContext.request.contextPath}/forgot-password">
+					Quên mật khẩu? </a>
+			</div>
 
 		</form>
 

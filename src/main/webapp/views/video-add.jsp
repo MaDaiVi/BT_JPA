@@ -1,5 +1,6 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,8 @@
     <p style="color: red;">${error}</p>
 
     <form action="${pageContext.request.contextPath}/video/add"
-          method="post">
+          method="post"
+          enctype="multipart/form-data">
 
         <label>Mã video:</label>
         <input type="text" name="videoId" required maxlength="50">
@@ -30,8 +32,15 @@
         <textarea name="description" maxlength="500"></textarea>
         <br><br>
 
-        <label>Poster:</label>
-        <input type="text" name="poster" maxlength="500">
+        <label>Poster (đường dẫn ảnh):</label>
+        <input type="text" name="poster"
+               maxlength="500"
+               placeholder="uploads/categories/ten-anh.jpg">
+        <br><br>
+
+        <label>Chọn video:</label>
+        <input type="file" name="videoFile"
+               accept="video/*" required>
         <br><br>
 
         <label>Danh mục:</label>
@@ -45,10 +54,7 @@
         <br><br>
 
         <button type="submit">Thêm</button>
-
-        <a href="${pageContext.request.contextPath}/video">
-            Quay lại
-        </a>
+        <a href="${pageContext.request.contextPath}/video">Quay lại</a>
 
     </form>
 

@@ -47,10 +47,17 @@ public class RegisterController extends HttpServlet {
         boolean result = userService.register(user);
 
         if (result) {
-            response.sendRedirect(request.getContextPath() + "/login");
+
+            // Lưu ID tài khoản để xác nhận OTP
+            request.getSession().setAttribute("otpUserId", user.getId());
+
+            // Chuyển đến trang xác nhận OTP
+            response.sendRedirect(request.getContextPath() + "/verify-otp");
+
         } else {
+
             request.setAttribute("alert",
-                    "Đăng ký thất bại! Tên đăng nhập có thể đã tồn tại hoặc dữ liệu không hợp lệ.");
+                    "Đăng ký thất bại! Tên đăng nhập, email hoặc số điện thoại có thể đã tồn tại.");
 
             request.getRequestDispatcher("/views/register.jsp").forward(request, response);
         }

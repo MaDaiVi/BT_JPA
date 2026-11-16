@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Videos")
@@ -23,6 +24,9 @@ public class Video {
 
     @Column(name = "poster", length = 500)
     private String poster;
+    
+    @Column(name = "videoPath", length = 500)
+    private String videoPath;
 
     @Column(name = "title", nullable = false, length = 500)
     private String title;
@@ -33,6 +37,14 @@ public class Video {
     @ManyToOne
     @JoinColumn(name = "cate_id", nullable = false)
     private Category category;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    
+    @Column(name = "createddate", nullable = false)
+    private Timestamp createdDate;
+    
 
     public Video() {
     }
@@ -93,5 +105,29 @@ public class Video {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+    
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
     }
 }

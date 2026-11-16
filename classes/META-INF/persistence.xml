@@ -15,6 +15,7 @@
         <class>vn.mdv.models.User</class>
         <class>vn.mdv.models.Category</class>
         <class>vn.mdv.models.Video</class>
+        <class>vn.mdv.models.OTPVerification</class>
 
         <!-- Database connection -->
         <properties>

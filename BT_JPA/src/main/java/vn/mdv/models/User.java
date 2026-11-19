@@ -1,0 +1,145 @@
+
+package vn.mdv.models;
+
+import java.sql.Timestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
+import jakarta.persistence.OneToMany;
+
+@Entity(name = "User")
+@Table(name = "`User`", schema = "dbo")
+public class User {
+
+    @Id
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "username")
+    private String userName;
+
+    @Column(name = "fullname")
+    private String fullName;
+
+    @Column(name = "password")
+    private String passWord;
+
+    @Column(name = "avatar")
+    private String avatar;
+
+    @Column(name = "roleid")
+    private int roleid;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "createddate")
+    private Timestamp createdDate;
+    
+    @Column(name = "isActive", nullable = false)
+    private boolean isActive = true;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Video> videos = new ArrayList<>();
+
+    // Constructor mặc định bắt buộc cho JPA
+    public User() {
+    }
+
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public int getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+    
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+    
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
+    }
+}

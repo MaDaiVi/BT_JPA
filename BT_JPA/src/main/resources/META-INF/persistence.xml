@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="BaiTapLTWPU"
+                      transaction-type="RESOURCE_LOCAL">
+
+        <!-- JPA Provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <class>vn.mdv.models.User</class>
+        <class>vn.mdv.models.Category</class>
+        <class>vn.mdv.models.Video</class>
+        <class>vn.mdv.models.OTPVerification</class>
+
+        <!-- Database connection -->
+        <properties>
+
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlserver://localhost:1433;databaseName=BANHANGDEMO;encrypt=true;trustServerCertificate=true"/>
+
+            <property name="jakarta.persistence.jdbc.user"
+                      value="sa"/>
+
+            <property name="jakarta.persistence.jdbc.password"
+                      value="123456"/>
+
+            <!-- Hibernate configuration -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.SQLServerDialect"/>
+
+            <property name="hibernate.show_sql"
+                      value="true"/>
+
+            <property name="hibernate.format_sql"
+                      value="true"/>
+
+            <!-- Do not modify existing database schema -->
+            <property name="hibernate.hbm2ddl.auto"
+                      value="none"/>
+
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
